@@ -1,0 +1,6 @@
+{
+  "name": "Pinterest AI Keyword & Search Intent Analyzer",
+  "description": "Analyze product images for Pinterest SEO keywords, search intent, visual scores, trends, content ideas, and hashtags.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

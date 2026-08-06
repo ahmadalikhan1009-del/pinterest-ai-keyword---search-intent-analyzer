@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PinKeywords AI - Pinterest Intent Analyzer</title>
+    <script>
+      (function() {
+        const isWsErr = function(msg) {
+          if (!msg) return false;
+          const str = typeof msg === 'string' ? msg : (msg.message || String(msg));
+          return str.includes('[vite] failed to connect to websocket') || str.includes('WebSocket closed without opened');
+        };
+        const origErr = console.error;
+        const origWarn = console.warn;
+        console.error = function(...args) {
+          if (args.some(isWsErr)) return;
+          origErr.apply(console, args);
+        };
+        console.warn = function(...args) {
+          if (args.some(isWsErr)) return;
+          origWarn.apply(console, args);
+        };
+        window.addEventListener('error', function(e) {
+          if (isWsErr(e.message) || isWsErr(e.error)) {
+            e.stopImmediatePropagation();
+            e.preventDefault();
+          }
+        }, true);
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
